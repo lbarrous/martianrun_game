@@ -65,9 +65,9 @@ public class Constants {
     public static final String FLYING_SMALL_ENEMY_ASSETS_ID = "flying_small_enemy";
     public static final String FLYING_WIDE_ENEMY_ASSETS_ID = "flying_wide_enemy";
 
-    public static final String BACKGROUND_IMAGE_PATH = "android/assets/background.png";
-    public static final String GROUND_IMAGE_PATH = "android/assets/ground.png";
-    public static final String SPRITES_ATLAS_PATH = "android/assets/sprites.txt";
+    public static final String BACKGROUND_IMAGE_PATH = "background.png";
+    public static final String GROUND_IMAGE_PATH = "ground.png";
+    public static final String SPRITES_ATLAS_PATH = "sprites.txt";
     public static final String[] RUNNER_RUNNING_REGION_NAMES = new String[] {"alienBeige_run1", "alienBeige_run2"};
     public static final String RUNNER_DODGING_REGION_NAME = "alienBeige_dodge";
     public static final String RUNNER_HIT_REGION_NAME = "alienBeige_hit";
@@ -97,11 +97,11 @@ public class Constants {
     public static final String TUTORIAL_LEFT_TEXT = "\nAgacharse Toque en el lado izquierdo";
     public static final String TUTORIAL_RIGHT_TEXT = "\nSalto Toque en lado derecho";
 
-    public static final String RUNNER_JUMPING_SOUND = "android/assets/jump.wav";
-    public static final String RUNNER_HIT_SOUND = "android/assets/hit.wav";
-    public static final String GAME_MUSIC = "android/assets/fun_in_a_bottle.mp3";
+    public static final String RUNNER_JUMPING_SOUND = "jump.wav";
+    public static final String RUNNER_HIT_SOUND = "hit.wav";
+    public static final String GAME_MUSIC = "fun_in_a_bottle.mp3";
 
-    public static final String FONT_NAME = "android/assets/roboto_bold.ttf";
+    public static final String FONT_NAME = "roboto_bold.ttf";
 
     public static final String ABOUT_TEXT = "Developed by: Alvaro Perez Garcia helped by @gamestudio24\nPowered by: " +
             "@libgdx\nGraphics: @kenneywings\nMusic: @kmacleod";

@@ -5,9 +5,6 @@ import com.badlogic.gdx.Preferences;
 
 import java.util.ArrayList;
 
-/**
- * Created by Alvaro on 14/04/2016.
- */
 public class SaveScore {
 
     private Preferences preferences;
@@ -35,6 +32,14 @@ public class SaveScore {
                     i++;
                 }
                 scores.putInteger("score" + i, currentHighScore);
+                scores.flush();
+            }
+            else {
+                int i = 1;
+                while (scores.contains("score" + i)) {
+                    i++;
+                }
+                scores.putInteger("score" + i, score);
                 scores.flush();
             }
         }

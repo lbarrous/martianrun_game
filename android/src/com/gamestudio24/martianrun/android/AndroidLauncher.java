@@ -34,14 +34,11 @@ import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.games.Games;
-import com.google.games.basegameutils.GameHelper;
 
 public class AndroidLauncher extends AndroidApplication implements GameEventListener {
 
     private static String SAVED_LEADERBOARD_REQUESTED = "SAVED_LEADERBOARD_REQUESTED";
     private static String SAVED_ACHIEVEMENTS_REQUESTED = "SAVED_ACHIEVEMENTS_REQUESTED";
-
-    private GameHelper gameHelper;
 
     private AdView mAdView;
     private boolean mLeaderboardRequested;
@@ -82,21 +79,18 @@ public class AndroidLauncher extends AndroidApplication implements GameEventList
     @Override
     protected void onStart() {
         super.onStart();
-        gameHelper.onStart(this);
         GoogleAnalytics.getInstance(this).reportActivityStart(this);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        gameHelper.onStop();
         GoogleAnalytics.getInstance(this).reportActivityStop(this);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        gameHelper.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override
@@ -175,34 +169,16 @@ public class AndroidLauncher extends AndroidApplication implements GameEventList
 
     @Override
     public void submitScore(int score) {
-        if (gameHelper.isSignedIn()) {
-            //Games.Leaderboards.submitScore(gameHelper.getApiClient(),
-                    //getString(R.string.leaderboard_high_scores), score);
-        } else {
             GameManager.getInstance().saveScore(score);
-        }
     }
 
     @Override
     public void displayLeaderboard() {
-        if (gameHelper.isSignedIn()) {
-            //startActivityForResult(Games.Leaderboards.getLeaderboardIntent(gameHelper.getApiClient(),
-                    //getString(R.string.leaderboard_high_scores)), 24);
-        } else {
-            gameHelper.beginUserInitiatedSignIn();
             mLeaderboardRequested = true;
-        }
     }
 
     @Override
     public void displayAchievements() {
-        if (gameHelper.isSignedIn()) {
-            startActivityForResult(
-                    Games.Achievements.getAchievementsIntent(gameHelper.getApiClient()), 25);
-        } else {
-            gameHelper.beginUserInitiatedSignIn();
-            mAchievementsRequested = true;
-        }
     }
 
     @Override
@@ -218,18 +194,10 @@ public class AndroidLauncher extends AndroidApplication implements GameEventList
 
     @Override
     public void unlockAchievement(String id) {
-        if (gameHelper.isSignedIn()) {
-            Games.Achievements.unlock(gameHelper.getApiClient(), id);
-            GameManager.getInstance().setAchievementUnlocked(id);
-        }
     }
 
     @Override
     public void incrementAchievement(String id, int steps) {
-        if (gameHelper.isSignedIn()) {
-            Games.Achievements.increment(gameHelper.getApiClient(), id, steps);
-            GameManager.getInstance().incrementAchievementCount(id, steps);
-        }
     }
 
     @Override
