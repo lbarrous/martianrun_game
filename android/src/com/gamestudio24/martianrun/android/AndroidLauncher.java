@@ -36,8 +36,7 @@ import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.games.Games;
 import com.google.games.basegameutils.GameHelper;
 
-public class AndroidLauncher extends AndroidApplication implements GameHelper.GameHelperListener,
-        GameEventListener {
+public class AndroidLauncher extends AndroidApplication implements GameEventListener {
 
     private static String SAVED_LEADERBOARD_REQUESTED = "SAVED_LEADERBOARD_REQUESTED";
     private static String SAVED_ACHIEVEMENTS_REQUESTED = "SAVED_ACHIEVEMENTS_REQUESTED";
@@ -75,9 +74,9 @@ public class AndroidLauncher extends AndroidApplication implements GameHelper.Ga
 
         setContentView(layout);
 
-        gameHelper = new GameHelper(this, GameHelper.CLIENT_GAMES);
-        gameHelper.setup(this);
-        gameHelper.setMaxAutoSignInAttempts(0);
+        //gameHelper = new GameHelper(this, GameHelper.CLIENT_GAMES);
+        //gameHelper.setup(this);
+        //gameHelper.setMaxAutoSignInAttempts(0);
     }
 
     @Override
@@ -139,14 +138,14 @@ public class AndroidLauncher extends AndroidApplication implements GameHelper.Ga
         return adParams;
     }
 
-    @Override
+    /*@Override
     public void onSignInFailed() {
         // handle sign-in failure (e.g. show Sign In button)
         mLeaderboardRequested = false;
         mAchievementsRequested = false;
-    }
+    }*/
 
-    @Override
+    /*@Override
     public void onSignInSucceeded() {
         // handle sign-in success
         if (GameManager.getInstance().hasSavedMaxScore()) {
@@ -162,7 +161,7 @@ public class AndroidLauncher extends AndroidApplication implements GameHelper.Ga
             displayAchievements();
             mAchievementsRequested = false;
         }
-    }
+    }*/
 
     @Override
     public void displayAd() {
@@ -177,8 +176,8 @@ public class AndroidLauncher extends AndroidApplication implements GameHelper.Ga
     @Override
     public void submitScore(int score) {
         if (gameHelper.isSignedIn()) {
-            Games.Leaderboards.submitScore(gameHelper.getApiClient(),
-                    getString(R.string.leaderboard_high_scores), score);
+            //Games.Leaderboards.submitScore(gameHelper.getApiClient(),
+                    //getString(R.string.leaderboard_high_scores), score);
         } else {
             GameManager.getInstance().saveScore(score);
         }
@@ -187,8 +186,8 @@ public class AndroidLauncher extends AndroidApplication implements GameHelper.Ga
     @Override
     public void displayLeaderboard() {
         if (gameHelper.isSignedIn()) {
-            startActivityForResult(Games.Leaderboards.getLeaderboardIntent(gameHelper.getApiClient(),
-                    getString(R.string.leaderboard_high_scores)), 24);
+            //startActivityForResult(Games.Leaderboards.getLeaderboardIntent(gameHelper.getApiClient(),
+                    //getString(R.string.leaderboard_high_scores)), 24);
         } else {
             gameHelper.beginUserInitiatedSignIn();
             mLeaderboardRequested = true;
@@ -207,14 +206,14 @@ public class AndroidLauncher extends AndroidApplication implements GameHelper.Ga
     }
 
     @Override
-    public void share() {
+    public void share() {/*
         String url = String.format("http://play.google.com/store/apps/details?id=%s",
                 BuildConfig.APPLICATION_ID);
         String message = String.format(Constants.SHARE_MESSAGE_PREFIX, url);
         Intent share = new Intent(Intent.ACTION_SEND);
         share.setType("text/plain");
         share.putExtra(Intent.EXTRA_TEXT, message);
-        startActivity(Intent.createChooser(share, Constants.SHARE_TITLE));
+        startActivity(Intent.createChooser(share, Constants.SHARE_TITLE));*/
     }
 
     @Override
@@ -235,61 +234,61 @@ public class AndroidLauncher extends AndroidApplication implements GameHelper.Ga
 
     @Override
     public String getGettingStartedAchievementId() {
-        return getString(R.string.achievement_getting_started);
+        return "";
     }
 
     @Override
     public String getLikeARoverAchievementId() {
-        return getString(R.string.achievement_like_a_rover);
+        return "";
     }
 
     @Override
     public String getSpiritAchievementId() {
-        return getString(R.string.achievement_spirit);
+        return "";
     }
 
     @Override
     public String getCuriosityAchievementId() {
-        return getString(R.string.achievement_curiosity);
+        return "";
     }
 
     @Override
     public String get5kClubAchievementId() {
-        return getString(R.string.achievement_5k_club);
+        return "";
     }
 
     @Override
     public String get10kClubAchievementId() {
-        return getString(R.string.achievement_10k_club);
+        return "";
     }
 
     @Override
     public String get25kClubAchievementId() {
-        return getString(R.string.achievement_25k_club);
+        return "";
     }
 
     @Override
     public String get50kClubAchievementId() {
-        return getString(R.string.achievement_50k_club);
+        return "";
     }
 
     @Override
     public String get10JumpStreetAchievementId() {
-        return getString(R.string.achievement_10_jump_street);
+        return "";
     }
 
     @Override
     public String get100JumpStreetAchievementId() {
-        return getString(R.string.achievement_100_jump_street);
+        return "";
     }
 
     @Override
     public String get500JumpStreetAchievementId() {
-        return getString(R.string.achievement_500_jump_street);
+        return "";
     }
 
     private String getAdMobUnitId() {
-        return getString(R.string.ad_unit_id);
+        return "";
     }
 
 }
